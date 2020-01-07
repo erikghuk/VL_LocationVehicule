@@ -44,7 +44,17 @@
     color: white;
 }
 
+input[type=text] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
 
+input[type=email] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
 
 .button {
     text-align: right;
@@ -53,6 +63,7 @@
 }
 
 .car_marque_model {
+    text-align: center;
     font-size: 19px;
     font-weight: bold;
 }
@@ -90,10 +101,10 @@ ul {
 }
 
 .car_info {
-    padding: 5px;
     flex: 3;
 }
 .res_info {
+    text-align: center;
     padding: 5px;
     flex: 1;
     border: 1px solid;
