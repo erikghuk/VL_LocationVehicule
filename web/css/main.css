@@ -14,10 +14,34 @@
 
 .left_col {
     margin-top: 20px;
-    flex: 1;
+    flex: 4;
 }
 .right_col {
-    flex: 4;
+    flex: 1;
+}
+
+#block1 {
+    background-color: grey;
+    padding: 10px;
+    text-align: center;
+    flex: 2;
+    border: 1px solid;
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 2px;
+}
+
+#block2 {
+    padding: 10px;
+    text-align: center;
+    flex: 2;
+    border: 1px solid;
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 2px;
+}
+
+.nice_text {
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 2px;
 }
 
 
@@ -38,10 +62,20 @@
     flex: 1;
 }
 
-.text_descr {padding: 50px;
+.text_descr {
+    padding: 50px;
     margin: 50px 20px 20px;
     flex: 1;
     font-size: 17px;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     color: #292727;
+}
+
+.price {
+    font-size: 20px;
+    font-family: "Trebuchet MS", sans-serif;
+}
+.montant {
+    font-size: 30px;
+    font-family: "Trebuchet MS", sans-serif;
 }
