@@ -7,16 +7,27 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/header.jsp" />
-<div>Merci. Réservation avec succès</div>
-<div>Un mail a été envoyé à votre mail</div>
+<div class="containerRow">
+    <div id="block1">Départ</div>
+    <div id="block1">List</div>
+    <div id="block1">Réservation</div>
+    <div id="block1">Confirmation</div>
+</div>
+<div class="nice_text" style="text-align: center">Merci. Réservation avec succès</div>
+<div class="nice_text" style="text-align: center">Un mail a été envoyé à votre mail</div>
     <div class="av_car_result">
-        <div class="car_marque_model"><c:out value = "${car.marque}"/> <c:out value = "${car.model}"/></div>
-        <div class="image"><img src="<c:out value = "${car.imageURL}"/>"></div>
-        <div class="car_color">Color: <c:out value = "${car.color}"/> Carburant: <c:out value = "${car.carburant}"/></div>
-        <div class="car_color">Name: <c:out value = "${client.name}"/> Surname: <c:out value = "${client.surName}"/></div>
-        <div class="car_color">Date reserving: <c:out value = "${client.startDate}"/> Date returning: <c:out value = "${client.endDate}"/></div>
-
+        <div class="containerRow">
+            <div><p class="car_marque_model" style="text-align: center"><c:out value = "${car.marque}"/> <c:out value = "${car.model}"/></p><p><img src="<c:out value = "${car.imageURL}"/>"></p></div>
+            <div>
+                <p><span class="name_param">Color:</span> <c:out value = "${car.color}"/></p>
+                <p><span class="name_param"> Carburant:</span> <c:out value = "${car.carburant}"/></p>
+                <p><span class="name_param">Name:</span> <c:out value = "${client.name}"/></p>
+                <p><span class="name_param">Surname:</span> <c:out value = "${client.surName}"/></p>
+                <p><span class="name_param">Date reserving:</span> <c:out value = "${client.startDate}"/></p>
+                <p><span class="name_param"> Date returning:</span> <c:out value = "${client.endDate}"/></p>
+            </div>
+        </div>
     </div>
-<a href="VL-location">HOME</a>
+<div style="text-align: center"><a href="VL-location" class="reserve_button">Retour à la page principal</a></div>
 </body>
 </html>
