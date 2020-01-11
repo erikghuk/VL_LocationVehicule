@@ -45,6 +45,7 @@
             <p><input type="email" name="client_email" placeholder="Entré votre address e-mail" size="50" required></p>
             <p><input type="text" name="client_startDate" value='<c:out value = "${startDate}"/>' readonly  size="50"></p>
             <p><input type="text" name="client_endDate" value='<c:out value = "${endDate}"/>' readonly size="50"></p>
+            <p><input type="checkbox" name="condition" required>Je suis d'accord avec les <a href="">conditions general</a> </p>
             <p><button class="reserve_button">RESERVER</button>
         </form>
     </div>
