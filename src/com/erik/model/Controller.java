@@ -2,6 +2,7 @@ package com.erik.model;
 
 import com.erik.model.DB.CarDAO;
 import com.erik.model.DB.ClientDAO;
+import com.erik.model.DB.DAO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
@@ -22,7 +23,7 @@ public class Controller {
     }
 
     private boolean dateAnalise(String dateRange) throws DAOException {
-        if(dateRange == null /* another condition */) {
+        if(dateRange == null) {
             throw new DAOException("Saisissez la date de location");
         }
         String[] dateRangeArray = dateRange.split("-");
@@ -54,24 +55,35 @@ public class Controller {
             if(requestingCars.getVehicles().size() == 0 || requestingCars == null) {
                 searchingForm = null;
                 carsDB = null;
-                throw new DAOException("On a trouvé aucun vehicule disponible avec les criteries que vous avez rentré.");
+                throw new DAOException("On a trouvé aucun vehicule disponible avec les critères que vous avez rentré.");
             }
         }
         else
             requestingCars = null;
     }
 
-    public Client getRegisteredClient(HttpServletRequest request, Vehicle vehicle) {
-        ClientDAO clientDAO = new ClientDAO();
+    public Client getRegisteredClient(HttpServletRequest request, Vehicle vehicle) throws DAOException {
+        DAO<Client> clientDAO = new ClientDAO();
         searchingForm.getLastReservingForm(request);
+
+        if(searchingForm.getClientName().equals("") ||
+                searchingForm.getClientSurname().equals("") ||
+                searchingForm.getEmail().equals("") ||
+                searchingForm.getClientAddress().equals("") ||
+                searchingForm.getReturningDate().equals("") ||
+                searchingForm.getReservingDate().equals("")) {
+            throw new DAOException("Invalid form");
+        }
         Client client = new Client(searchingForm.getClientName(), searchingForm.getClientSurname(),
                                     dateConverter(searchingForm.getReservingDate().trim()), dateConverter(searchingForm.getReturningDate().trim()),
                                     searchingForm.getClientAddress(), searchingForm.getEmail());
         client.setCarID(vehicle.getID());
-        clientDAO.create(client);
+
+        if(clientDAO.create(client) == null) {
+            throw new DAOException("Vous avez déja loué une voiture.");
+        }
         return client;
     }
-
     public Vehicle getRequestingCarFromParc(HttpServletRequest request) throws DAOException {
         Vehicle car = null;
         int selectedCarID = -1;
