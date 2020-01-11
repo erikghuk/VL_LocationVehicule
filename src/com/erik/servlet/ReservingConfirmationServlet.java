@@ -2,6 +2,7 @@ package com.erik.servlet;
 
 import com.erik.model.Client;
 import com.erik.model.Controller;
+import com.erik.model.DAOException;
 import com.erik.model.Vehicle;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,13 @@ public class ReservingConfirmationServlet extends HttpServlet {
         controller = new Controller();
 
         Vehicle vehicle = (Vehicle) reservedCarSession.getAttribute("vehicle");
-        Client client = controller.getRegisteredClient(request, vehicle);
+        Client client = null;
+        try {
+            client = controller.getRegisteredClient(request, vehicle);
+        } catch (DAOException e) {
+            request.setAttribute("message", e.getMessage());
+            this.getServletContext().getRequestDispatcher("/reserving.jsp").forward(request, response);
+        }
         request.setAttribute("car", vehicle);
         if(client != null) {
             request.setAttribute("client", client);
